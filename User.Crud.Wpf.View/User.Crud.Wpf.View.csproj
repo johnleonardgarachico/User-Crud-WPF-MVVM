@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\User.Crud.Wpf.ViewModel\User.Crud.Wpf.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>
