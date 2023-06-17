@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Windows;
+using User.Crud.Wpf.Utilities.Extensions;
 using User.Crud.Wpf.View;
+using User.Crud.Wpf.ViewModel;
 
 namespace User.Crud.Wpf.Host
 {
@@ -21,6 +23,8 @@ namespace User.Crud.Wpf.Host
                 .ConfigureServices((context, services) =>
                 {
                     services.AddSingleton<MainPage>();
+                    services.AddSingleton<UserViewModel>();
+                    services.AddFormFactory<CreateUserForm>();
                 })
                 .Build();
         }

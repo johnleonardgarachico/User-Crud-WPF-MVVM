@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\User.Crud.Wpf.Model\User.Crud.Wpf.Model.csproj" />
+    <ProjectReference Include="..\User.Crud.Wpf.Utilities\User.Crud.Wpf.Utilities.csproj" />
     <ProjectReference Include="..\User.Crud.Wpf.ViewModel\User.Crud.Wpf.ViewModel.csproj" />
     <ProjectReference Include="..\User.Crud.Wpf.View\User.Crud.Wpf.View.csproj" />
   </ItemGroup>
