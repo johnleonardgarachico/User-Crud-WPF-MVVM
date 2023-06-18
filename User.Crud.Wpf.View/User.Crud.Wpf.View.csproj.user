@@ -8,6 +8,9 @@
     <Compile Update="MainPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ReadUserForm.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UpdateUserForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ReadUserForm.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UpdateUserForm.xaml">

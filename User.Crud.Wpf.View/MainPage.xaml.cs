@@ -19,14 +19,16 @@ namespace User.Crud.Wpf.View
         private readonly IAbstractFactory<CreateUserForm> _addUserFactory;
         private readonly IAbstractFactory<UpdateUserForm> _updateUserFactory;
         private readonly UserViewModel _userViewModel;
+        private readonly ReadUserForm _readUserForm;
 
         public MainPage(IAbstractFactory<CreateUserForm> addUserFactory, IAbstractFactory<UpdateUserForm> updateUserFactory,
-            UserViewModel userViewModel)
+            UserViewModel userViewModel, ReadUserForm readUserForm)
         {
             InitializeComponent();
             _addUserFactory = addUserFactory;
             _updateUserFactory = updateUserFactory;
             _userViewModel = userViewModel;
+            _readUserForm = readUserForm;
 
             userGrid.ItemsSource = _userViewModel.MainPageGridUsers;
         }
@@ -91,6 +93,30 @@ namespace User.Crud.Wpf.View
             {
                 MessageBox.Show(ex.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void buttonRead_Click(object sender, RoutedEventArgs e)
+        {
+            if (userGrid.SelectedItem is null)
+            {
+                MessageBox.Show("Please select an item in the grid to open", "Information",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            var dataItem = userGrid.SelectedItem as MainPageGridUser;
+
+            try
+            {
+                _readUserForm.InitializeFromMainPage(dataItem!);
+                _readUserForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

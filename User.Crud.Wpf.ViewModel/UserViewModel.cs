@@ -32,7 +32,7 @@ namespace User.Crud.Wpf.ViewModel
         {
             try
             {
-                userForAdding.UserId = Users.Count + 1;
+                userForAdding.UserId = !Users.Any() ? 1 : Users.Max(x => x.UserId) + 1;
 
                 var convertedUser = UserConverter.ConvertUserForAddingToUser(userForAdding);
 

@@ -31,6 +31,7 @@ namespace User.Crud.Wpf.View
             txtLastName.Text = user.LastName;
             txtCountry.Text = user.Country;
         }
+
         private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
