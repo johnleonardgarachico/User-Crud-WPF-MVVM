@@ -23,18 +23,25 @@ namespace User.Crud.Wpf.View
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var userForAdding = new UserForAdding
+            try
             {
-                FirstName = txtFirstName.Text,
-                LastName = txtLastName.Text,
-                Country = txtCountry.Text
-            };
+                var userForAdding = new UserForAdding
+                {
+                    FirstName = txtFirstName.Text,
+                    LastName = txtLastName.Text,
+                    Country = txtCountry.Text
+                };
 
-            _userViewModel.AddUser(userForAdding);
+                _userViewModel.AddUser(userForAdding);
 
-            this.Close();
+                this.Close();
 
-            NotifyMethodCompleted(nameof(buttonAdd_Click));
+                NotifyMethodCompleted(nameof(buttonAdd_Click));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void NotifyMethodCompleted(string methodName)

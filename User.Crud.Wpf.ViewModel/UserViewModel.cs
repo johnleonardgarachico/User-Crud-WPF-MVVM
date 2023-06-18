@@ -14,11 +14,25 @@ namespace User.Crud.Wpf.ViewModel
 
         public void AddUser(UserForAdding userForAdding)
         {
-            userForAdding.UserId = Users.Count + 1;
+            try
+            {
+                userForAdding.UserId = Users.Count + 1;
 
-            var convertedUser = UserConverter.ConvertUserForAddingToUser(userForAdding);
+                var convertedUser = UserConverter.ConvertUserForAddingToUser(userForAdding);
 
-            Users.Add(convertedUser);
+                Users.Add(convertedUser);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void RemoveUser(int userId)
+        {
+            var userForRemoving = Users.First(x => x.UserId == userId);
+
+            Users.Remove(userForRemoving);
         }
     }
 }

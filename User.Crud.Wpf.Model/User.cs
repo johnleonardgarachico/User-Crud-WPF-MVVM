@@ -14,10 +14,10 @@
 
         public User(int userId, string firstName, string lastName, string country)
         {
-            if (userId <= 0) throw new ArgumentException(nameof(userId));
-            if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentException(nameof(firstName));
-            if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentException(nameof(lastName));
-            if (string.IsNullOrWhiteSpace(country)) throw new ArgumentException(nameof(country));
+            if (userId <= 0) throw new ArgumentException($"{nameof(userId)} cannot be equal or less than 0");
+            if (string.IsNullOrWhiteSpace(firstName)) throw new ArgumentException($"{nameof(firstName)} cannot be empty, null or space character");
+            if (string.IsNullOrWhiteSpace(lastName)) throw new ArgumentException($"{nameof(lastName)} cannot be empty, null or space character");
+            if (string.IsNullOrWhiteSpace(country)) throw new ArgumentException($"{nameof(country)} cannot be empty, null or space character");
 
             Guid = Guid.NewGuid();
             UserId = userId;

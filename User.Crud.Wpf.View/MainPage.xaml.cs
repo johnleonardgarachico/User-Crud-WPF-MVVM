@@ -37,6 +37,28 @@ namespace User.Crud.Wpf.View
             addUserForm.MethodCompleted += AddUserMethodCompleted;
         }
 
+        private void buttonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (userGrid.SelectedItem is null)
+            {
+                MessageBox.Show("Please select an item in the grid to delete", "Information", 
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+
+                return;
+            }
+
+            var dataItem = userGrid.SelectedItem as UserGridDataItem;
+
+            var confirmDelete = MessageBox.Show($"Are you sure you want to remove User {dataItem!.Name}", 
+                "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (confirmDelete == MessageBoxResult.Yes)
+            {
+                _userViewModel.RemoveUser(dataItem!.UserId);
+                _userGridItems.Remove(dataItem);
+            }
+        }
+
         private void AddUserMethodCompleted(object sender, MethodCompletedEventArgs e)
         {
             var addedUser = _userViewModel.Users.Last();
