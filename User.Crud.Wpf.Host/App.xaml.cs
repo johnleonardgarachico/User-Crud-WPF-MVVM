@@ -25,6 +25,7 @@ namespace User.Crud.Wpf.Host
                     services.AddSingleton<MainPage>();
                     services.AddSingleton<UserViewModel>();
                     services.AddFormFactory<CreateUserForm>();
+                    services.AddFormFactory<UpdateUserForm>();
                 })
                 .Build();
         }

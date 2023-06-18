@@ -7,30 +7,43 @@ using User.Crud.Wpf.ViewModel.Models;
 namespace User.Crud.Wpf.View
 {
     /// <summary>
-    /// Interaction logic for CreateUserForm.xaml
+    /// Interaction logic for UpdateUserForm.xaml
     /// </summary>
-    public partial class CreateUserForm : Window
+    public partial class UpdateUserForm : Window
     {
         private readonly UserViewModel _userViewModel;
 
-        public CreateUserForm(UserViewModel userViewModel)
+        private MainPageGridUser _mainPageGridUser;
+
+        public UpdateUserForm(UserViewModel userViewModel)
         {
             InitializeComponent();
             _userViewModel = userViewModel ?? throw new ArgumentNullException(nameof(userViewModel));
         }
 
-        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        public void InitializeFromMainPage(MainPageGridUser mainPageGridUser)
+        {
+            _mainPageGridUser = mainPageGridUser;
+
+            var user = _userViewModel.GetUser(mainPageGridUser.UserId);
+
+            txtFirstName.Text = user.FirstName;
+            txtLastName.Text = user.LastName;
+            txtCountry.Text = user.Country;
+        }
+        private void buttonUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var userForAdding = new UserForAdding
+                var userForUpdate = new UserForUpdate
                 {
+                    UserId = _mainPageGridUser.UserId,
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
                     Country = txtCountry.Text
                 };
 
-                _userViewModel.AddUser(userForAdding);
+                _userViewModel.UpdateUser(userForUpdate);
 
                 this.Close();
             }

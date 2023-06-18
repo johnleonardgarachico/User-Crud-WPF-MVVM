@@ -11,5 +11,13 @@ namespace User.Crud.Wpf.ViewModel.Converter
 
             return convertedUser;
         }
+
+        public static Model.User ConvertUserForUpdateToUser(UserForUpdate userForUpdate)
+        {
+            var convertedUser = new Model.User(userForUpdate.UserId, userForUpdate.FirstName,
+                userForUpdate.LastName, userForUpdate.Country);
+
+            return convertedUser;
+        }
     }
 }
