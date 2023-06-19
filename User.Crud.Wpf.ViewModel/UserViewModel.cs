@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using User.Crud.Wpf.Utilities;
 using User.Crud.Wpf.ViewModel.Converter;
 using User.Crud.Wpf.ViewModel.Models;
 
@@ -35,6 +36,11 @@ namespace User.Crud.Wpf.ViewModel
                 userForAdding.UserId = !Users.Any() ? 1 : Users.Max(x => x.UserId) + 1;
 
                 var convertedUser = UserConverter.ConvertUserForAddingToUser(userForAdding);
+
+                if (!ModelUtility.IsValid(convertedUser))
+                {
+                    throw new InvalidOperationException($"Error Adding User {convertedUser.FirstName} {convertedUser.LastName}. Please enter a valid input!");
+                } 
 
                 Users.Add(convertedUser);
 
@@ -82,6 +88,11 @@ namespace User.Crud.Wpf.ViewModel
                 var position = Users.IndexOf(storedUser);
 
                 var convertedUser = UserConverter.ConvertUserForUpdateToUser(userForUpdate);
+
+                if (!ModelUtility.IsValid(convertedUser))
+                {
+                    throw new InvalidOperationException($"Error Updating {convertedUser.FirstName} {convertedUser.LastName}. Please enter a valid input!");
+                }
 
                 Users.Insert(position, convertedUser);
                 Users.Remove(storedUser);

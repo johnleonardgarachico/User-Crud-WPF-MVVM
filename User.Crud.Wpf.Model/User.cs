@@ -1,4 +1,6 @@
-﻿namespace User.Crud.Wpf.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace User.Crud.Wpf.Model
 {
     public class User
     {
@@ -6,10 +8,16 @@
 
         public int UserId { get; init; }
 
+        [RegularExpression(@"^[a-zA-Z\s]*$")]
+        [StringLength(40, MinimumLength = 2)]
         public string FirstName { get; init; }
 
+        [RegularExpression(@"^[a-zA-Z\s]*$")]
+        [StringLength(40, MinimumLength = 2)]
         public string LastName { get; init; }
 
+        [RegularExpression(@"^[a-zA-Z\s]*$")]
+        [StringLength(40, MinimumLength = 2)]
         public string Country { get; init; }
 
         public User(int userId, string firstName, string lastName, string country)

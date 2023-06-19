@@ -19,16 +19,16 @@ namespace User.Crud.Wpf.View
         private readonly IAbstractFactory<CreateUserForm> _addUserFactory;
         private readonly IAbstractFactory<UpdateUserForm> _updateUserFactory;
         private readonly UserViewModel _userViewModel;
-        private readonly ReadUserForm _readUserForm;
+        private readonly IAbstractFactory<ReadUserForm> _readUserFormFactory;
 
         public MainPage(IAbstractFactory<CreateUserForm> addUserFactory, IAbstractFactory<UpdateUserForm> updateUserFactory,
-            UserViewModel userViewModel, ReadUserForm readUserForm)
+            UserViewModel userViewModel, IAbstractFactory<ReadUserForm> readUserFormFactory)
         {
             InitializeComponent();
             _addUserFactory = addUserFactory;
             _updateUserFactory = updateUserFactory;
             _userViewModel = userViewModel;
-            _readUserForm = readUserForm;
+            _readUserFormFactory = readUserFormFactory;
 
             userGrid.ItemsSource = _userViewModel.MainPageGridUsers;
         }
@@ -109,8 +109,9 @@ namespace User.Crud.Wpf.View
 
             try
             {
-                _readUserForm.InitializeFromMainPage(dataItem!);
-                _readUserForm.Show();
+                var readUserForm = _readUserFormFactory.Create();
+                readUserForm.InitializeFromMainPage(dataItem!);
+                readUserForm.Show();
             }
             catch (Exception ex)
             {

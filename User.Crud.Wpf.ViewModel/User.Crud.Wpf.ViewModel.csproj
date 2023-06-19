@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\User.Crud.Wpf.Model\User.Crud.Wpf.Model.csproj" />
+    <ProjectReference Include="..\User.Crud.Wpf.Utilities\User.Crud.Wpf.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -26,8 +26,7 @@ namespace User.Crud.Wpf.Host
                     services.AddSingleton<UserViewModel>();
                     services.AddFormFactory<CreateUserForm>();
                     services.AddFormFactory<UpdateUserForm>();
-
-                    services.AddTransient<ReadUserForm>();
+                    services.AddFormFactory<ReadUserForm>();
                 })
                 .Build();
         }
